@@ -22,4 +22,17 @@
 
 Raw native transcripts are intentionally ignored by Git. They are retained locally for later reviewed/redacted BUILDCHAT export and must not be pushed as repository content.
 
+## Genuine local bug — 2026-10-30
+
+| Evidence | Observed result |
+|---|---|
+| Exact API reproduction before fix | Correct 12-month schedule; established that recurrence arithmetic was not the visible-path cause |
+| Real Chrome UI reproduction | Date control displayed `2026-11-30` while result remained unscheduled, proving DOM/control and calculation state divergence |
+| UI regression before fix | 1 failed: confirmed date field lacked `onInput` synchronization |
+| Outside-horizon regression before fix | 1 failed: expected `partial`, received `complete` |
+| Fix | Added `onInput` synchronization; outside-horizon affects global state; known 12-month total exposed |
+| Final mechanical verification | 21/21 tests, typecheck, lint and production build passed |
+| Exact API verification after fix | 12 × 100,000 cents, total 1,200,000 cents, complete, no outside warning |
+| Outside-horizon API verification | Partial with explicit outside-view warning |
+
 No secrets or personal financial records belong in this manifest. Add exact commands/results after execution; do not retrospectively mark planned tests as passed.

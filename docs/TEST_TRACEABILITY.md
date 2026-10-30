@@ -4,7 +4,7 @@ Status values are `not run`, `pass`, `fail`, or `blocked`.
 
 | ID | Automated/manual evidence | Initial status | Gate/blocker |
 |---|---|---|---|
-| A01 | `lib/domain/engine.test.ts` monthly purchase/obligation/count | pass | `npm test`, 2026-10-30 |
+| A01 | `lib/domain/engine.test.ts` monthly purchase/obligation/count, exact 12 × MXN 1,000 regression | pass | `npm test`, 2026-10-30; genuine founder bug regression |
 | A02 | `engine.test.ts` six-month recurrence, leap/month-end | pass | `npm test`, 2026-10-30 |
 | A03 | `engine.test.ts` unknown January amount and partial subtotal | pass | `npm test`, 2026-10-30 |
 | A04 | `engine.test.ts` unknown first date remains unscheduled | pass | `npm test`, 2026-10-30 |

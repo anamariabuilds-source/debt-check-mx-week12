@@ -67,6 +67,7 @@ export interface UnscheduledItem {
 
 export interface ScenarioResult {
   months: MonthlyResult[];
+  knownHorizonTotalCents: number;
   unscheduled: UnscheduledItem[];
   overallState: CalculationState;
   warnings: string[];

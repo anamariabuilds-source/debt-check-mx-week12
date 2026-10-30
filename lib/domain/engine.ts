@@ -93,7 +93,8 @@ export function calculateScenario(input: ScenarioInput): ScenarioResult {
   });
 
   const hasUsefulKnown = monthly.some((month) => month.items.some((item) => item.amountCents !== null && item.amountState !== "unknown"));
-  const anyUnknown = unresolvedTiming || monthly.some((month) => month.items.some((item) => item.amountCents === null || item.amountState === "unknown"));
+  const anyUnknown = unresolvedTiming || extendsBeyondHorizon || monthly.some((month) => month.items.some((item) => item.amountCents === null || item.amountState === "unknown"));
+  const knownHorizonTotalCents = monthly.reduce((sum, month) => sum + month.knownSubtotalCents, 0);
   const discrepancy = purchase.advertisedInstallmentCents.value === null ? null : purchase.advertisedInstallmentCents.value * purchase.installmentCount - purchase.priceCents;
   const warnings: string[] = [];
   if (discrepancy !== null && discrepancy !== 0) warnings.push(`El total anunciado difiere del precio por ${Math.abs(discrepancy)} centavos. No se atribuye a una comisión sin evidencia.`);
@@ -101,8 +102,9 @@ export function calculateScenario(input: ScenarioInput): ScenarioResult {
   if (unscheduledItems.length) warnings.push("Hay pagos sin fecha asignable; no se colocaron en meses inventados.");
   return {
     months: monthly,
+    knownHorizonTotalCents,
     unscheduled: unscheduledItems,
-    overallState: anyUnknown ? (hasUsefulKnown ? "partial" : "undeterminable") : "complete",
+    overallState: anyUnknown ? (hasUsefulKnown || extendsBeyondHorizon ? "partial" : "undeterminable") : "complete",
     warnings,
     extendsBeyondHorizon,
     horizonLabel: `${firstMonth} a ${lastMonth} (12 meses inclusive)`,

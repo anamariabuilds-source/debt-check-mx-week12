@@ -17,3 +17,10 @@
 - First unit run exposed a brittle case-sensitive expectation, corrected without changing engine behavior.
 - Next 16 declarations referenced URLPattern types absent from the installed TypeScript lib surface. `skipLibCheck` was enabled for dependency declarations; strict checking remains enabled for project source.
 - Do not run standalone `tsc` concurrently with `next build`: both read/write generated `.next/types`. Final verification runs build and then typecheck sequentially.
+
+## 2026-10-30 — Founder-reported date synchronization bug
+
+- Kept recurrence logic unchanged because exact API reproduction proved it already scheduled November 2026 through October 2027 correctly.
+- Applied the smallest UI correction at the date event boundary: synchronize on `input` as well as `change`.
+- Corrected the independent global-state defect revealed by the symptoms: a scenario with known payments outside the 12-month view is partial, never complete.
+- Added the known in-horizon total to make the 12 × MXN 1,000 expectation directly observable.
