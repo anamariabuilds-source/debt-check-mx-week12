@@ -1,0 +1,10 @@
+.next/
+node_modules/
+coverage/
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+evidence/private/
+evidence/native-transcripts/
