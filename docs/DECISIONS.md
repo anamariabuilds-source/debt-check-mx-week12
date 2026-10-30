@@ -16,3 +16,4 @@
 - First npm install failed because the existing user cache was inaccessible; retried with an isolated temporary cache instead of deleting user data.
 - First unit run exposed a brittle case-sensitive expectation, corrected without changing engine behavior.
 - Next 16 declarations referenced URLPattern types absent from the installed TypeScript lib surface. `skipLibCheck` was enabled for dependency declarations; strict checking remains enabled for project source.
+- Do not run standalone `tsc` concurrently with `next build`: both read/write generated `.next/types`. Final verification runs build and then typecheck sequentially.

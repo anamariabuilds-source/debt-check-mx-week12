@@ -17,6 +17,8 @@
 | 2026-10-30 | Mechanical fix 2 | Added an explicit refinement-view type; runtime schema behavior unchanged |
 | 2026-10-30 | Mechanical run 4 | 18/18 tests pass; typecheck pass; lint pass; production build pass; routes `/`, `/product`, `/about`, `/api/calculate` emitted |
 | 2026-10-30 | Server integration | Valid synthetic POST returned 12 months + one unscheduled item; invalid POST returned HTTP 400 with six issues |
+| 2026-10-30 | Final mechanical run | 18/18 tests pass; lint pass; build pass; production audit 0 vulnerabilities. Parallel typecheck raced build-generated `.next/types` and failed transiently; sequential post-build typecheck passed |
+| 2026-10-30 | Native transcript pre-handoff snapshot | Ignored file `evidence/native-transcripts/01a18dfd-bcd9-7221-bb18-7de0134365a5.stage-b-pre-handoff.jsonl`; SHA-256 `a2a22928b8e83eb66d57592592e0eb61f54a8b42e8c00904cf2758426d520a68` |
 
 Raw native transcripts are intentionally ignored by Git. They are retained locally for later reviewed/redacted BUILDCHAT export and must not be pushed as repository content.
 
