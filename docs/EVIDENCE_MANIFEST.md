@@ -48,3 +48,22 @@ Raw native transcripts are intentionally ignored by Git. They are retained local
 | Final mechanical/API verification | 21/21 tests, typecheck, lint, build passed; API labels 1/12–12/12 and twelve 100,000-cent subtotals |
 
 No secrets or personal financial records belong in this manifest. Add exact commands/results after execution; do not retrospectively mark planned tests as passed.
+
+## Gate C local preparation — 2026-10-30
+
+| Evidence | Observed result |
+|---|---|
+| Baseline unit run | `npm test -- --runInBand` failed because Vitest does not support the Jest-only flag; no product failure |
+| Correct baseline | Existing 21/21 tests passed before Gate C source changes |
+| Local auth/persistence implementation | Supabase SSR clients, cookie session refresh, Google sign-in/callback/sign-out, safe redirects, authenticated scenario CRUD, server validation/recalculation, and explicit UI states added |
+| Hardened migration | Authenticated-only grants/policies, forced RLS, constraints, owner/update index, protected `updated_at` trigger, and bounded JSON snapshots prepared |
+| Executable RLS plan | `supabase/tests/scenarios_rls_test.sql` contains 13 pgTAP assertions for anonymous denial, owner CRUD, null preservation, and two-user isolation |
+| RLS execution limitation | Not run: neither `supabase` nor `docker` is installed locally; no cloud migration or external project was authorized |
+| Expanded verification | 38/38 tests passed; TypeScript passed; ESLint passed; Next.js 16.4.1 production build passed with auth and scenario routes emitted |
+| Redirect regression | Existing-query callback status test added and passed; unsafe external/protocol-relative/backslash/control-character paths rejected |
+| Dependency audit attempt 1 | Restricted-network `npm audit --omit=dev` failed with `ENOTFOUND registry.npmjs.org`; no dependency changes |
+| Dependency audit retry | Read-only registry audit completed: 0 production vulnerabilities |
+| Local no-config route check | `/product` returned the calculation UI with private-save pending; `GET /api/scenarios` returned 503 `configuration_pending` rather than simulating persistence |
+| Local redirect/origin check | Safe existing query was preserved as `/product?mode=saved&auth=configuration_pending`; cross-origin scenario POST returned HTTP 403 |
+| External verification | Not performed: live Google OAuth, applied migration/RLS, private CRUD, two-user isolation, production cookies, deployment, and Gate C external services remain pending |
+| Native transcript pre-commit snapshot | Ignored file `evidence/native-transcripts/01a18dfd-bcd9-7221-bb18-7de0134365a5.gate-c-local-precommit.jsonl`; SHA-256 `9743dc9dee1bc20d75edbcd8a355333a9e8ea2273c6a0a859f543ffddb4fb6ab` |

@@ -30,3 +30,13 @@
 - The second founder reproduction proved that `onInput` could capture a transient prior month from the native date widget.
 - Date parsing and recurrence remain unchanged because engine/API boundary tests with ISO `2026-11-30` were correct.
 - Version 1 now requests the confirmed date explicitly as `AAAA-MM-DD`; strict calendar validation continues to reject impossible dates.
+
+## 2026-10-30 — Gate C local preparation only
+
+- Implemented the Supabase recommended SSR client split: browser client, cookie-aware server client, and Next.js 16 `proxy.ts` session refresh. No service-role key is used.
+- Authentication uses Google OAuth with PKCE through Supabase. Callback return paths are restricted to local relative paths to prevent open redirects; sign-out and all scenario mutations enforce same-origin requests.
+- Save and update accept only scenario inputs, validate them with the shared domain schema, recalculate deterministically on the server, and persist the server-owned result snapshot.
+- Owner identity always comes from the verified Supabase user. API queries also filter by owner and the migration enforces authenticated-only RLS as defense in depth.
+- Unknown values and dates remain JSON `null`; estimated evidence requires and preserves a written assumption. Schema and calculation versions are stored and checked when reopening.
+- When configuration is absent, the product remains usable for calculation and clearly labels authentication/persistence as pending. It does not simulate login or private storage.
+- No cloud project, migration application, OAuth configuration, live credential, deployment, or GitHub push was performed.
