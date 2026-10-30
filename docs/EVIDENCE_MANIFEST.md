@@ -35,4 +35,16 @@ Raw native transcripts are intentionally ignored by Git. They are retained local
 | Exact API verification after fix | 12 × 100,000 cents, total 1,200,000 cents, complete, no outside warning |
 | Outside-horizon API verification | Partial with explicit outside-view warning |
 
+## Second founder browser regression — 2026-10-30
+
+| Evidence | Observed result |
+|---|---|
+| Founder manual reproduction | November showed 2/12; October empty; view total MXN 11,000 |
+| Engine/API boundary | ISO `2026-11-30` remained correct; timezone and month-end arithmetic excluded |
+| UI regression before fix | Failed: native date field still used transient `onInput` path |
+| Correction | Explicit `AAAA-MM-DD` text input with one controlled `onChange` path |
+| Canonical browser verification | Chrome keyboard entry on `localhost`: 1/12 through 12/12, twelve MXN 1,000 months, MXN 12,000 total, Complete |
+| Discarded automation | `127.0.0.1` triggered Next.js dev-origin blocking; not accepted as hydrated UI evidence |
+| Final mechanical/API verification | 21/21 tests, typecheck, lint, build passed; API labels 1/12–12/12 and twelve 100,000-cent subtotals |
+
 No secrets or personal financial records belong in this manifest. Add exact commands/results after execution; do not retrospectively mark planned tests as passed.

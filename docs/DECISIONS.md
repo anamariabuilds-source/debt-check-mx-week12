@@ -24,3 +24,9 @@
 - Applied the smallest UI correction at the date event boundary: synchronize on `input` as well as `change`.
 - Corrected the independent global-state defect revealed by the symptoms: a scenario with known payments outside the 12-month view is partial, never complete.
 - Added the known in-horizon total to make the 12 × MXN 1,000 expectation directly observable.
+
+## 2026-10-30 — Remove native segmented date ambiguity
+
+- The second founder reproduction proved that `onInput` could capture a transient prior month from the native date widget.
+- Date parsing and recurrence remain unchanged because engine/API boundary tests with ISO `2026-11-30` were correct.
+- Version 1 now requests the confirmed date explicitly as `AAAA-MM-DD`; strict calendar validation continues to reject impossible dates.
