@@ -11,4 +11,4 @@ npm run lint
 npm run build
 ```
 
-The local UI calculates without credentials. Private save/reopen is intentionally unavailable until founder-controlled Supabase, Google Auth, RLS, and two-user isolation are configured and verified under Gate C.
+The local UI calculates without credentials. Supabase SSR auth and private scenario CRUD are prepared locally, but the UI reports configuration pending until founder-controlled Supabase and Google OAuth values are supplied. Live OAuth, applied RLS, save/reopen, and two-user isolation remain unverified and must not be represented as passed.

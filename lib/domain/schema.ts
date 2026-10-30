@@ -36,3 +36,37 @@ export const scenarioSchema = z.object({
 }).superRefine((scenario, context) => {
   if (scenario.purchase.firstPaymentDate.state === "estimated") context.addIssue({ code: "custom", path: ["purchase", "firstPaymentDate"], message: "La versión 1 no estima la primera fecha de tarjeta." });
 });
+
+const calculationState = z.enum(["complete", "partial", "undeterminable"]);
+export const scenarioResultSchema = z.object({
+  months: z.array(z.object({
+    month: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/),
+    items: z.array(z.object({
+      id: z.string().min(1).max(160),
+      label: z.string().min(1).max(120),
+      kind: z.enum(["purchase", "obligation"]),
+      date,
+      amountCents: cents.nullable(),
+      amountState: evidenceState,
+      dateState: evidenceState,
+    })).max(200),
+    knownSubtotalCents: cents,
+    state: calculationState,
+    overlap: z.boolean(),
+    unresolvedCouldAffectMonth: z.boolean(),
+  })).length(12),
+  knownHorizonTotalCents: cents,
+  unscheduled: z.array(z.object({
+    id: z.string().min(1).max(160),
+    label: z.string().min(1).max(120),
+    amountCents: cents.nullable(),
+    remainingCount: z.number().int().min(1).max(240).nullable(),
+    reason: z.string().min(1).max(500),
+    impact: z.string().min(1).max(500),
+  })).max(100),
+  overallState: calculationState,
+  warnings: z.array(z.string().min(1).max(500)).max(100),
+  extendsBeyondHorizon: z.boolean(),
+  horizonLabel: z.string().min(1).max(300),
+  calculationVersion: z.literal("1.0.0"),
+});

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import "./persistence.css";
 
 export const metadata: Metadata = { title: "Debt Check MX", description: "Compara compromisos antes de comprar, sin inventar certezas." };
 
