@@ -16,14 +16,14 @@ Status values are `not run`, `pass`, `fail`, or `blocked`.
 | A10 | Source/manual review: no income field or affordability verdict | pass | Source review; no human-behavior claim |
 | A11 | `engine.test.ts` discrepancy without invented fee | pass | `npm test`, 2026-10-30 |
 | A12 | `engine.test.ts` confirmed zero versus unknown | pass | `npm test`, 2026-10-30 |
-| A13 | Server-owned snapshot tests recalculate and preserve nulls/assumptions/versions | blocked | Local contract passes; live Supabase save/reopen remains unverified |
-| A14 | Update route recalculates and enforces stored calculation/schema versions | blocked | Local implementation complete; real database update/reopen remains unverified |
-| A15 | `supabase/tests/scenarios_rls_test.sql` logged-out pgTAP checks | blocked | Executable plan prepared; no local Supabase CLI/Docker or applied cloud migration |
+| A13 | Server-owned snapshot tests plus founder-observed private save/list/reopen preserving purchase values and unknown first-payment date | blocked | Partial evidence only; the founder observation does not independently verify every A13 field, assumption, result and version invariant |
+| A14 | Update route recalculates and enforces stored calculation/schema versions | blocked | Local implementation exists; authenticated update and post-update reopen are not verified |
+| A15 | Read-only anonymous Data API request to `scenarios` | pass | Codex observed the live endpoint deny anonymous access; no saved data was disclosed |
 | A16 | Same pgTAP plan covers two-user list/update/delete isolation | blocked | Executable plan prepared; needs real Supabase identities/database execution |
-| A17 | Engine, money, shared server schema, invalid API request | pass | 18/18 tests + local HTTP 400 check |
+| A17 | Engine, money, shared server schema, invalid API request | pass | Included in the latest 39-test passing automated suite plus local HTTP 400 evidence |
 | A18 | Fixture label in `engine.test.ts`; no runtime seed | pass | Source audit |
 | A19 | Responsive CSS, semantic labels; browser/keyboard review | not run | Browser interaction/screenshot evidence not completed |
 | A20 | Genuine observed defect → regression → rebuild/redeploy | blocked | Deployment portion Gate C; do not invent defect |
 | A21 | Fresh-chat screenshot walkthrough and confusion fix | blocked | Requires completed local browser sequence/evidence |
 | A22 | Equivalent real-user Notes/Excel comparison | blocked | External participant evidence |
-| A23 | Real domain, routes, auth/save, 5+ commits, 2+ deploys | blocked | Gate C and final evidence |
+| A23 | Local routes plus founder-observed Google sign-in and private save/list/reopen; 5+ local commits | blocked | Production deployment, real domain and 2+ deployment evidence remain incomplete |

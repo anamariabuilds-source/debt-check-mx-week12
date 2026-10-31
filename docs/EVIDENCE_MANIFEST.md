@@ -67,3 +67,16 @@ No secrets or personal financial records belong in this manifest. Add exact comm
 | Local redirect/origin check | Safe existing query was preserved as `/product?mode=saved&auth=configuration_pending`; cross-origin scenario POST returned HTTP 403 |
 | External verification | Not performed: live Google OAuth, applied migration/RLS, private CRUD, two-user isolation, production cookies, deployment, and Gate C external services remain pending |
 | Native transcript pre-commit snapshot | Ignored file `evidence/native-transcripts/01a18dfd-bcd9-7221-bb18-7de0134365a5.gate-c-local-precommit.jsonl`; SHA-256 `9743dc9dee1bc20d75edbcd8a355333a9e8ea2273c6a0a859f543ffddb4fb6ab` |
+
+## Founder-observed Supabase workflow and submission preparation — 2026-10-31
+
+| Evidence | Observed result / boundary |
+|---|---|
+| Supabase migration/RLS | Founder reported the final migration applied and manually observed SQL results showing RLS enabled and forced |
+| Google OAuth | Founder manually observed successful Google sign-in and an authenticated session in the local application; not independent automated browser evidence |
+| Private save/list/reopen | Founder manually observed save confirmation, the scenario in the authenticated user's list, and reopen with original purchase values and unknown first-payment date preserved |
+| Anonymous denial | Codex made a read-only anonymous Data API request; the `scenarios` endpoint existed and denied access |
+| Unverified authorization operations | Authenticated update/delete and two-user RLS isolation remain unverified; the executable pgTAP plan was not run against a local Supabase stack |
+| Deployment boundary | No production deployment or real-domain verification was performed |
+| Final Packet | `PACKET_AnaMariaMatas.pdf`, 13 pages, SHA-256 `f2b9756e3b7913ac41328920f6cc928f1445777f92cd4de4f5f35211e21d98e9`; Appendix B labels the Supabase workflow as founder-observed manual evidence |
+| Final local publication verification | 39/39 automated tests passed; Next.js 16.4.1 production build passed; sequential TypeScript and ESLint checks passed; production dependency audit reported 0 vulnerabilities |

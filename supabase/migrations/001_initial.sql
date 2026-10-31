@@ -1,5 +1,5 @@
 -- Prepared locally. Apply only after Gate C authorization and founder-controlled Supabase setup.
-create extension if not exists pgcrypto;
+begin;
 
 create table public.scenarios (
   id uuid primary key default gen_random_uuid(),
@@ -20,10 +20,10 @@ create table public.scenarios (
 
 create index scenarios_owner_updated_idx on public.scenarios (user_id, updated_at desc);
 
-create schema if not exists private;
-revoke all on schema private from public;
+create schema debt_check_private;
+revoke all on schema debt_check_private from public, anon, authenticated;
 
-create or replace function private.set_updated_at()
+create function debt_check_private.set_scenarios_updated_at()
 returns trigger
 language plpgsql
 set search_path = ''
@@ -34,21 +34,23 @@ begin
 end;
 $$;
 
-revoke all on function private.set_updated_at() from public, anon, authenticated;
-
 create trigger scenarios_set_updated_at
 before update on public.scenarios
-for each row execute function private.set_updated_at();
+for each row execute function debt_check_private.set_scenarios_updated_at();
+
+revoke all on function debt_check_private.set_scenarios_updated_at() from public, anon, authenticated;
 
 alter table public.scenarios enable row level security;
 alter table public.scenarios force row level security;
 
-create policy "owners select scenarios" on public.scenarios for select to authenticated using ((select auth.uid()) = user_id);
-create policy "owners insert scenarios" on public.scenarios for insert to authenticated with check ((select auth.uid()) = user_id);
-create policy "owners update scenarios" on public.scenarios for update to authenticated using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
-create policy "owners delete scenarios" on public.scenarios for delete to authenticated using ((select auth.uid()) = user_id);
+create policy "owners select scenarios" on public.scenarios for select to authenticated using ((select auth.uid()) is not null and (select auth.uid()) = user_id);
+create policy "owners insert scenarios" on public.scenarios for insert to authenticated with check ((select auth.uid()) is not null and (select auth.uid()) = user_id);
+create policy "owners update scenarios" on public.scenarios for update to authenticated using ((select auth.uid()) is not null and (select auth.uid()) = user_id) with check ((select auth.uid()) is not null and (select auth.uid()) = user_id);
+create policy "owners delete scenarios" on public.scenarios for delete to authenticated using ((select auth.uid()) is not null and (select auth.uid()) = user_id);
 
-revoke all on public.scenarios from public, anon, authenticated;
-grant select, insert, update, delete on public.scenarios to authenticated;
+revoke all on table public.scenarios from public, anon, authenticated;
+grant select, insert, update, delete on table public.scenarios to authenticated;
 
 comment on table public.scenarios is 'Owner-scoped versioned scenario with server-recalculated snapshots; no secret key in clients.';
+
+commit;

@@ -14,19 +14,27 @@
 - Inputs and versioned outputs are stored together as JSON snapshots. Unknown values/dates remain `null`; estimated evidence retains its written assumption.
 - Demo fixtures are explicitly synthetic.
 
-## Automated local evidence
+## Automated and read-only technical evidence
 
-- Redirect, request-origin/body-limit, server recalculation, null/version/assumption preservation, migration-contract, and configuration-pending route tests pass locally.
+- The latest local suite reports 39 passing tests covering redirects, request-origin/body limits, server recalculation, null/version/assumption preservation, migration contracts and route behavior.
 - `supabase/tests/scenarios_rls_test.sql` is an executable pgTAP plan for logged-out denial, owner CRUD, and two-user isolation.
-- The production dependency audit reported zero known production vulnerabilities on 2026-10-30.
+- Codex performed a read-only anonymous Data API request to `scenarios`; the endpoint existed and denied anonymous access.
+- TypeScript, ESLint and the production build passed in the latest recorded verification. The production dependency audit reported zero known production vulnerabilities.
 
-## Not externally verified
+## Founder-observed manual results
 
-- Google OAuth login and callback behavior.
-- Applied Supabase migration, database constraints, trigger, grants, and policies.
-- The pgTAP RLS plan (Supabase CLI and Docker are absent locally).
-- Logged-out denial and two-user isolation against a real database.
-- Production environment-variable scoping and log redaction.
-- Live save/list/reopen/update/delete behavior and session-expiration recovery.
+- Supabase SQL results showed RLS enabled and forced after the migration was applied.
+- Google OAuth sign-in completed and the local application displayed an authenticated session.
+- A private scenario saved with confirmation, appeared in the authenticated user's scenario list, and reopened with the original purchase values and unknown first-payment date preserved.
 
-These require founder-controlled external configuration and separate external-action authorization. Until then the UI identifies private save as unavailable; it does not fall back to local storage or claim security verification.
+These are founder observations, not independently verified automated browser tests.
+
+## Not yet verified
+
+- Authenticated scenario update and delete behavior.
+- Two-user RLS isolation, including direct attempts to list/read/update another user's scenario.
+- The full pgTAP RLS plan; Supabase CLI and Docker were absent from the local environment used to prepare it.
+- Production environment-variable scoping, cookie behavior and log redaction.
+- Production deployment, real-domain behavior and production session recovery.
+
+No update/delete or two-user isolation pass is claimed. The application does not fall back to local storage or simulate private persistence when Supabase is unavailable.
