@@ -80,3 +80,16 @@ No secrets or personal financial records belong in this manifest. Add exact comm
 | Deployment boundary | No production deployment or real-domain verification was performed |
 | Final Packet | `PACKET_AnaMariaMatas.pdf`, 13 pages, SHA-256 `f2b9756e3b7913ac41328920f6cc928f1445777f92cd4de4f5f35211e21d98e9`; Appendix B labels the Supabase workflow as founder-observed manual evidence |
 | Final local publication verification | 39/39 automated tests passed; Next.js 16.4.1 production build passed; sequential TypeScript and ESLint checks passed; production dependency audit reported 0 vulnerabilities |
+
+## Synthetic persona correction — 2026-10-31
+
+| Evidence | Observed result / boundary |
+|---|---|
+| Persona source | Founder-provided 41-page `PERSONA.docx`: 9 screens and 52 simulated expressions; retained locally and intentionally not tracked because screenshots include personal account information |
+| Evidence classification | Hypothetical irregular-income persona generated in a fresh-chat screenshot walkthrough; not a real participant, usability rate, market validation or independent browser operator |
+| Primary confusion | C07, C18 and C21 interpreted unresolved-payment `$0.00` month cards as potentially meaning no obligations existed |
+| Technical finding | Engine behavior remained correct: payments without supported dates stayed unscheduled; the defect was insufficient presentation context around known zero subtotals |
+| Save/reopen extension | No persistence defect established: the completed Screen 6 comparison was reported unsaved and unauthenticated; two older/default-title undeterminable records were later reopened |
+| Implemented correction | Prominent unresolved-calendar explanation, contextual empty-month copy and a non-affordability definition of `Completo`; no calculation, auth, API, database or RLS change |
+| Automated verification | Focused 6/6 and full 41/41 tests passed; TypeScript, ESLint and Next.js production build passed; production dependency audit found 0 vulnerabilities |
+| Remaining evidence | Production deployment verification and a fresh focused synthetic persona retest are pending; no correction-success claim is made from code or automated tests alone |

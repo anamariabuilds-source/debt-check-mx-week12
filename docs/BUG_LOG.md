@@ -81,3 +81,38 @@ Real headless Chrome keyboard input on the canonical `http://localhost:3000/prod
 Earlier automation against `127.0.0.1` was discarded because Next.js logged that cross-origin dev resources were blocked, preventing normal hydration. The accepted browser evidence uses `localhost`, matching the founder review URL.
 
 Final verification: 21/21 unit tests, TypeScript, ESLint, production build, exact API sequence, and canonical localhost Chrome sequence all passed.
+
+## 2026-10-31 — Persona confusion: unresolved payments appeared as empty $0.00 months
+
+**Reporter:** Synthetic Persona 2 walkthrough; not a real-user study.
+**Status:** Presentation correction implemented and mechanically verified; focused synthetic persona retest pending.
+
+### Observed confusion
+
+Across Screens 2 and 4, simulated expressions C07, C18 and C21 interpreted twelve `$0.00` cards as possibly meaning there were no obligations, even though the purchase and phone amounts remained visible under `Pagos sin fecha asignada`. The simulated persona indicated this could block the central comparison task.
+
+### Root cause and evidence boundary
+
+The deterministic engine correctly refused to place payments without supported dates into invented months. The UI displayed the correct known subtotal, but the prominent zeros and `Sin pagos programados conocidos` copy did not explicitly connect those cards to the unresolved-payment section. This is a presentation defect, not a scheduling or arithmetic defect.
+
+The later save/reopen extension did not establish a persistence defect. Screen 6 stated that the completed comparison had not been saved or authenticated; Screens 7–9 reopened two older/default-title, undeterminable scenarios. Duplicate titles contributed to simulated confusion, but no evidence shows that a completed phone-and-insurance comparison was saved and then lost.
+
+### Correction
+
+- Added a prominent explanation before the calendar whenever unresolved payments exist.
+- Changed empty-month copy to state that only assignable-date payments appear and unresolved commitments may remain.
+- Clarified that `Completo` describes calculation completeness for registered information, not affordability or proof that every expense was entered.
+- Did not change the financial engine, scheduling, unknown-value handling, authentication, APIs, database or RLS.
+
+### Mechanical verification
+
+- Added a presentation-copy regression for unresolved calendar subtotals.
+- Added a complete synthetic snapshot/reopen regression containing monthly phone and semiannual insurance obligations.
+- Focused tests: 6/6 passed.
+- Full suite: 41/41 passed across 9 files.
+- TypeScript, ESLint and production build passed.
+- Production dependency audit reported 0 vulnerabilities.
+
+### Remaining limitation
+
+No post-correction synthetic persona response has been collected. Deployment and the focused before/after persona retest must be recorded separately before A21 is considered passed.

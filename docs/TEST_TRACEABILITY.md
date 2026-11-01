@@ -24,6 +24,6 @@ Status values are `not run`, `pass`, `fail`, or `blocked`.
 | A18 | Fixture label in `engine.test.ts`; no runtime seed | pass | Source audit |
 | A19 | Responsive CSS, semantic labels; browser/keyboard review | not run | Browser interaction/screenshot evidence not completed |
 | A20 | Genuine observed defect → regression → rebuild/redeploy | blocked | Deployment portion Gate C; do not invent defect |
-| A21 | Fresh-chat screenshot walkthrough and confusion fix | blocked | Requires completed local browser sequence/evidence |
+| A21 | Fresh-chat deployed-app walkthrough: 9 screens and 52 simulated expressions; C07/C18/C21 selected; presentation fix and automated regressions completed | blocked | Synthetic evidence only; post-correction deployed screenshot and fresh focused persona retest remain pending |
 | A22 | Equivalent real-user Notes/Excel comparison | blocked | External participant evidence |
 | A23 | Local routes plus founder-observed Google sign-in and private save/list/reopen; 5+ local commits | blocked | Production deployment, real domain and 2+ deployment evidence remain incomplete |

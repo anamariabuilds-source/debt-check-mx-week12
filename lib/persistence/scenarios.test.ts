@@ -73,4 +73,55 @@ describe("server-owned scenario snapshots", () => {
       "Estimación tomada del anuncio; falta confirmar el contrato.",
     );
   });
+
+  it("preserves a complete synthetic monthly and semiannual comparison", () => {
+    const complete = input();
+    complete.title = "SYNTHETIC complete comparison";
+    complete.obligations = [
+      {
+        id: "phone",
+        label: "Teléfono sintético",
+        amountCents: { value: 50_000, state: "known", source: "user" },
+        anchorDate: { value: "2026-11-15", state: "known", source: "user" },
+        frequency: "monthly",
+        remainingCount: 5,
+        endDate: null,
+        optional: false,
+      },
+      {
+        id: "insurance",
+        label: "Seguro sintético",
+        amountCents: { value: 360_000, state: "known", source: "user" },
+        anchorDate: { value: "2027-01-15", state: "known", source: "user" },
+        frequency: "semiannual",
+        remainingCount: 2,
+        endDate: null,
+        optional: false,
+      },
+    ];
+
+    const prepared = prepareScenarioRecord(complete, "10000000-0000-0000-0000-000000000001");
+    const row: ScenarioRow = {
+      id: "30000000-0000-0000-0000-000000000004",
+      user_id: "10000000-0000-0000-0000-000000000001",
+      title: prepared.record.title,
+      review_start_month: prepared.record.review_start_month,
+      horizon_months: 12,
+      currency: "MXN",
+      schema_version: SCENARIO_SCHEMA_VERSION,
+      calculation_version: prepared.record.calculation_version,
+      scenario_result_state: prepared.record.scenario_result_state,
+      input_snapshot: prepared.record.input_snapshot,
+      result_snapshot: prepared.record.result_snapshot,
+      created_at: "2026-10-31T12:00:00.000Z",
+      updated_at: "2026-10-31T12:00:00.000Z",
+    };
+
+    const reopened = parseSavedScenario(row);
+    expect(reopened.title).toBe("SYNTHETIC complete comparison");
+    expect(reopened.input.obligations).toEqual(complete.obligations);
+    expect(reopened.result.overallState).toBe("complete");
+    expect(reopened.result.months[2].knownSubtotalCents).toBe(510_000);
+    expect(reopened.result.months[8].knownSubtotalCents).toBe(460_000);
+  });
 });
