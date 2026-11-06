@@ -16,7 +16,7 @@ describe("comunicación de subtotales con pagos sin fecha", () => {
   it("explica los ceros y el alcance de Completo sin alterar el cálculo", () => {
     const source = readFileSync(new URL("./comparison-tool.tsx", import.meta.url), "utf8");
     expect(source).toContain("Todavía no podemos ubicar todos tus pagos en el calendario.");
-    expect(source).toContain("Los meses con $0.00 solo incluyen los pagos con fechas que podemos asignar.");
+    expect(source).toContain("El subtotal solo incluye pagos con monto y fecha conocidos.");
     expect(source).toContain("Esto no significa que no tengas otros compromisos.");
     expect(source).toContain("No hay pagos con fecha asignable en este mes.");
     expect(source).toContain("No significa que registraste todos tus gastos ni que la compra sea asequible.");
