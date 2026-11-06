@@ -1,5 +1,6 @@
 import { calculateScenario } from "@/lib/domain/engine";
 import { scenarioResultSchema, scenarioSchema } from "@/lib/domain/schema";
+import { CALCULATION_VERSION } from "@/lib/domain/types";
 import type { ScenarioInput, ScenarioResult } from "@/lib/domain/types";
 import type { Json, ScenarioInsert, ScenarioRow } from "@/lib/supabase/database.types";
 
@@ -18,8 +19,17 @@ function asJson(value: unknown): Json {
 export function prepareScenarioRecord(raw: unknown, userId: string): { input: ScenarioInput; result: ScenarioResult; record: ScenarioInsert } {
   const parsed = scenarioSchema.safeParse(raw);
   if (!parsed.success) throw new ScenarioValidationError(parsed.error.issues.map((issue) => ({ path: issue.path, message: issue.message })));
-  const input = parsed.data;
+  const input: ScenarioInput = { ...parsed.data, calculationVersion: CALCULATION_VERSION };
   const result = calculateScenario(input);
+  // The input snapshot owns assumption text. Avoid duplicating it on each recurring payment.
+  const snapshot: ScenarioResult = {
+    ...result,
+    months: result.months.map((month) => ({
+      ...month,
+      items: month.items.map((item) => ({ ...item, amountAssumption: undefined, dateAssumption: undefined })),
+    })),
+    unscheduled: result.unscheduled.map((item) => ({ ...item, amountAssumption: undefined })),
+  };
   return {
     input,
     result,
@@ -33,7 +43,7 @@ export function prepareScenarioRecord(raw: unknown, userId: string): { input: Sc
       calculation_version: result.calculationVersion,
       scenario_result_state: result.overallState,
       input_snapshot: asJson(input),
-      result_snapshot: asJson(result),
+      result_snapshot: asJson(snapshot),
     },
   };
 }
@@ -60,7 +70,8 @@ export function parseSavedScenario(row: ScenarioRow): SavedScenario {
     id: row.id,
     title: row.title,
     input: input.data,
-    result: result.data,
+    // Rebuild visible assumptions and legacy totals from validated input without rewriting the row.
+    result: calculateScenario(input.data),
     schemaVersion: row.schema_version,
     calculationVersion: row.calculation_version,
     createdAt: row.created_at,

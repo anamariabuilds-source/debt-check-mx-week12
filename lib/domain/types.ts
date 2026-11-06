@@ -1,3 +1,6 @@
+export const CALCULATION_VERSION = "1.1.0";
+export type CalculationVersion = "1.0.0" | typeof CALCULATION_VERSION;
+
 export type EvidenceState = "known" | "estimated" | "unknown";
 export type CalculationState = "complete" | "partial" | "undeterminable";
 export type Frequency = "monthly" | "semiannual" | "one_time";
@@ -34,7 +37,7 @@ export interface ScenarioInput {
   horizonMonths: 12;
   purchase: ProposedPurchase;
   obligations: Obligation[];
-  calculationVersion: "1.0.0";
+  calculationVersion: CalculationVersion;
 }
 
 export interface ScheduledItem {
@@ -45,6 +48,8 @@ export interface ScheduledItem {
   amountCents: number | null;
   amountState: EvidenceState;
   dateState: EvidenceState;
+  amountAssumption?: string;
+  dateAssumption?: string;
 }
 
 export interface MonthlyResult {
@@ -61,6 +66,8 @@ export interface UnscheduledItem {
   label: string;
   amountCents: number | null;
   remainingCount: number | null;
+  amountState?: EvidenceState;
+  amountAssumption?: string;
   reason: string;
   impact: string;
 }
@@ -73,5 +80,5 @@ export interface ScenarioResult {
   warnings: string[];
   extendsBeyondHorizon: boolean;
   horizonLabel: string;
-  calculationVersion: "1.0.0";
+  calculationVersion: CalculationVersion;
 }

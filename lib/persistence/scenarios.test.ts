@@ -57,7 +57,7 @@ describe("server-owned scenario snapshots", () => {
     expect(reopened.input.obligations[0].amountCents).toEqual({ value: null, state: "unknown", source: "user" });
     expect(reopened.result.months[2].items.some((item) => item.amountCents === null && item.amountState === "unknown")).toBe(true);
     expect(reopened.schemaVersion).toBe("1.0.0");
-    expect(reopened.calculationVersion).toBe("1.0.0");
+    expect(reopened.calculationVersion).toBe("1.1.0");
   });
 
   it("preserves documented assumptions for estimated amounts", () => {
@@ -123,5 +123,21 @@ describe("server-owned scenario snapshots", () => {
     expect(reopened.result.overallState).toBe("complete");
     expect(reopened.result.months[2].knownSubtotalCents).toBe(510_000);
     expect(reopened.result.months[8].knownSubtotalCents).toBe(460_000);
+
+    const legacyInput = input();
+    legacyInput.purchase.advertisedInstallmentCents = {
+      value: 100_000, state: "estimated", source: "user", assumption: "Synthetic estimate",
+    };
+    const legacy = parseSavedScenario({
+      ...row,
+      calculation_version: "1.0.0",
+      input_snapshot: JSON.parse(JSON.stringify(legacyInput)),
+      result_snapshot: JSON.parse(JSON.stringify({ ...reopened.result, calculationVersion: "1.0.0" })),
+    });
+    expect(legacy.input.purchase.advertisedInstallmentCents.assumption).toBe("Synthetic estimate");
+    expect(legacy.calculationVersion).toBe("1.0.0");
+    expect(legacy.result.calculationVersion).toBe("1.1.0");
+    expect(legacy.result.knownHorizonTotalCents).toBe(0);
+    expect(() => parseSavedScenario({ ...row, calculation_version: "9.0.0" })).toThrow(/versión/);
   });
 });

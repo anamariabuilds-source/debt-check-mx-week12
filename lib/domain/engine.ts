@@ -1,5 +1,6 @@
 import { addCalendarMonths, addMonthsToMonth, isValidDate, isValidMonth, monthOf, monthRange } from "./calendar";
-import type { Obligation, ScenarioInput, ScenarioResult, ScheduledItem, UnscheduledItem } from "./types";
+import { CALCULATION_VERSION } from "./types";
+import type { Evidence, Obligation, ScenarioInput, ScenarioResult, ScheduledItem, UnscheduledItem } from "./types";
 
 const MAX_CENTS = 100_000_000_00;
 const MAX_OCCURRENCES = 240;
@@ -28,8 +29,8 @@ export function validateScenario(input: ScenarioInput): void {
   }
 }
 
-function unscheduled(id: string, label: string, amountCents: number | null, remainingCount: number | null, reason: string): UnscheduledItem {
-  return { id, label, amountCents, remainingCount, reason, impact: "Puede cambiar los subtotales y cruces de uno o más meses; el escenario permanece parcial." };
+function unscheduled(id: string, label: string, amount: Evidence<number>, remainingCount: number | null, reason: string): UnscheduledItem {
+  return { id, label, amountCents: amount.value, amountState: amount.state, amountAssumption: amount.assumption, remainingCount, reason, impact: "Puede cambiar los subtotales y cruces de uno o más meses; el escenario permanece parcial." };
 }
 
 function obligationDates(item: Obligation): string[] {
@@ -57,20 +58,20 @@ export function calculateScenario(input: ScenarioInput): ScenarioResult {
 
   const purchase = input.purchase;
   if (!purchase.firstPaymentDate.value) {
-    unscheduledItems.push(unscheduled("purchase", purchase.label, purchase.advertisedInstallmentCents.value, purchase.installmentCount, "La primera fecha de pago no está confirmada."));
+    unscheduledItems.push(unscheduled("purchase", purchase.label, purchase.advertisedInstallmentCents, purchase.installmentCount, "La primera fecha de pago no está confirmada."));
   } else {
     for (let index = 0; index < purchase.installmentCount; index += 1) {
       const date = addCalendarMonths(purchase.firstPaymentDate.value, index);
       const month = monthOf(date);
       if (month > lastMonth) extendsBeyondHorizon = true;
       if (month < firstMonth || month > lastMonth) continue;
-      itemsByMonth.get(month)?.push({ id: `purchase-${index + 1}`, label: `${purchase.label} ${index + 1}/${purchase.installmentCount}`, kind: "purchase", date, amountCents: purchase.advertisedInstallmentCents.value, amountState: purchase.advertisedInstallmentCents.state, dateState: purchase.firstPaymentDate.state });
+      itemsByMonth.get(month)?.push({ id: `purchase-${index + 1}`, label: `${purchase.label} ${index + 1}/${purchase.installmentCount}`, kind: "purchase", date, amountCents: purchase.advertisedInstallmentCents.value, amountState: purchase.advertisedInstallmentCents.state, dateState: purchase.firstPaymentDate.state, amountAssumption: purchase.advertisedInstallmentCents.assumption });
     }
   }
 
   for (const obligation of input.obligations) {
     if (!obligation.anchorDate.value) {
-      unscheduledItems.push(unscheduled(obligation.id, obligation.label, obligation.amountCents.value, obligation.remainingCount, "No hay una fecha ancla defendible."));
+      unscheduledItems.push(unscheduled(obligation.id, obligation.label, obligation.amountCents, obligation.remainingCount, "No hay una fecha ancla defendible."));
       continue;
     }
     const dates = obligationDates(obligation);
@@ -78,22 +79,22 @@ export function calculateScenario(input: ScenarioInput): ScenarioResult {
       const month = monthOf(date);
       if (month > lastMonth) extendsBeyondHorizon = true;
       if (month < firstMonth || month > lastMonth) continue;
-      itemsByMonth.get(month)?.push({ id: `${obligation.id}-${index + 1}`, label: obligation.label, kind: "obligation", date, amountCents: obligation.amountCents.value, amountState: obligation.amountCents.state, dateState: obligation.anchorDate.state });
+      itemsByMonth.get(month)?.push({ id: `${obligation.id}-${index + 1}`, label: obligation.label, kind: "obligation", date, amountCents: obligation.amountCents.value, amountState: obligation.amountCents.state, dateState: obligation.anchorDate.state, amountAssumption: obligation.amountCents.assumption, dateAssumption: obligation.anchorDate.assumption });
     }
   }
 
   const unresolvedTiming = unscheduledItems.length > 0;
   const monthly = months.map((month) => {
     const items = itemsByMonth.get(month) ?? [];
-    const knownSubtotalCents = items.reduce((sum, item) => sum + (item.amountCents !== null && item.amountState !== "unknown" ? item.amountCents : 0), 0);
-    const hasUnknownAmount = items.some((item) => item.amountCents === null || item.amountState === "unknown");
+    const knownSubtotalCents = items.reduce((sum, item) => sum + (item.amountCents !== null && item.amountState === "known" && item.dateState === "known" ? item.amountCents : 0), 0);
+    const hasUncertainPayment = items.some((item) => item.amountCents === null || item.amountState !== "known" || item.dateState !== "known");
     const hasSupportedAmount = items.some((item) => item.amountCents !== null && item.amountState !== "unknown");
-    const state = hasUnknownAmount || unresolvedTiming ? (hasSupportedAmount || items.length === 0 ? "partial" : "undeterminable") : "complete";
+    const state = hasUncertainPayment || unresolvedTiming ? (hasSupportedAmount || items.length === 0 ? "partial" : "undeterminable") : "complete";
     return { month, items, knownSubtotalCents, state, overlap: items.length >= 2, unresolvedCouldAffectMonth: unresolvedTiming } as const;
   });
 
   const hasUsefulKnown = monthly.some((month) => month.items.some((item) => item.amountCents !== null && item.amountState !== "unknown"));
-  const anyUnknown = unresolvedTiming || extendsBeyondHorizon || monthly.some((month) => month.items.some((item) => item.amountCents === null || item.amountState === "unknown"));
+  const hasUncertainty = extendsBeyondHorizon || monthly.some((month) => month.state !== "complete");
   const knownHorizonTotalCents = monthly.reduce((sum, month) => sum + month.knownSubtotalCents, 0);
   const discrepancy = purchase.advertisedInstallmentCents.value === null ? null : purchase.advertisedInstallmentCents.value * purchase.installmentCount - purchase.priceCents;
   const warnings: string[] = [];
@@ -104,10 +105,10 @@ export function calculateScenario(input: ScenarioInput): ScenarioResult {
     months: monthly,
     knownHorizonTotalCents,
     unscheduled: unscheduledItems,
-    overallState: anyUnknown ? (hasUsefulKnown || extendsBeyondHorizon ? "partial" : "undeterminable") : "complete",
+    overallState: hasUncertainty ? (hasUsefulKnown || extendsBeyondHorizon ? "partial" : "undeterminable") : "complete",
     warnings,
     extendsBeyondHorizon,
     horizonLabel: `${firstMonth} a ${lastMonth} (12 meses inclusive)`,
-    calculationVersion: input.calculationVersion,
+    calculationVersion: CALCULATION_VERSION,
   };
 }

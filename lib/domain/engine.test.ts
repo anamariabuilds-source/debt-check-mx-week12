@@ -23,3 +23,41 @@ describe("motor de comparación Week 12", () => {
   it("regresión: una compra totalmente posterior al horizonte no puede marcar el escenario completo", () => { const input = base(); input.purchase.firstPaymentDate = evidence("2027-11-30"); const result = calculateScenario(input); expect(result.extendsBeyondHorizon).toBe(true); expect(result.months.every((month) => month.items.length === 0)).toBe(true); expect(result.overallState).toBe("partial"); });
   it("A17 rechaza fechas imposibles, rangos y etiquetas largas", () => { const badDate = base(); badDate.purchase.firstPaymentDate = evidence("2027-02-30"); expect(() => validateScenario(badDate)).toThrow(/fecha inválida/i); const badCount = base(); badCount.purchase.installmentCount = 0; expect(() => validateScenario(badCount)).toThrow(/Mensualidades/); });
 });
+
+it("excludes estimated amounts and dates from the known subtotal", () => {
+  const result = calculateScenario({
+    ...base(),
+    obligations: [
+      obligation({ id: "estimated-amount", amountCents: { ...evidence(30_000, "estimated"), assumption: "Synthetic amount" } }),
+      obligation({ id: "estimated-date", anchorDate: { ...evidence("2026-11-15", "estimated"), assumption: "Synthetic date" } }),
+    ],
+  });
+  expect(result.months[0].knownSubtotalCents).toBe(100_000);
+  expect(result.months[0].state).toBe("partial");
+  expect(result.months[0].items[1].amountAssumption).toBe("Synthetic amount");
+  expect(result.months[0].items[2].dateAssumption).toBe("Synthetic date");
+});
+
+it.each([
+  [1, 140_000, 380_000, 1_680_000],
+  [1.5, 210_000, 570_000, 2_520_000],
+])("matches the approved fictional Packet fixture (scale %s)", (scale, january, march, horizon) => {
+  const input = base();
+  input.reviewStartMonth = "2027-01";
+  input.purchase.priceCents = 960_000 * scale;
+  input.purchase.advertisedInstallmentCents = evidence(80_000 * scale);
+  input.purchase.firstPaymentDate = evidence("2027-01-15");
+  input.obligations = [
+    obligation({ id: "monthly", anchorDate: evidence("2027-01-15"), amountCents: evidence(60_000 * scale), remainingCount: 4 }),
+    obligation({ id: "semiannual", anchorDate: evidence("2027-03-15"), amountCents: evidence(240_000 * scale), frequency: "semiannual", remainingCount: 2 }),
+    obligation({ id: "estimate", anchorDate: evidence("2027-01-15"), amountCents: { ...evidence(30_000 * scale, "estimated"), assumption: "Cotización ficticia" }, frequency: "one_time" }),
+    obligation({ id: "unresolved", anchorDate: evidence(null), amountCents: evidence(null) }),
+  ];
+  const result = calculateScenario(input);
+  expect(result.months[0].knownSubtotalCents).toBe(january);
+  expect(result.months[0].items.find((item) => item.amountState === "estimated")?.amountCents).toBe(30_000 * scale);
+  expect(result.months[2].knownSubtotalCents).toBe(march);
+  expect(result.knownHorizonTotalCents).toBe(horizon);
+  expect(result.unscheduled[0].amountCents).toBeNull();
+  expect(result.overallState).toBe("partial");
+});

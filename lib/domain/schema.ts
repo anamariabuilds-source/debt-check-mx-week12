@@ -1,4 +1,7 @@
 import { z } from "zod";
+import { CALCULATION_VERSION } from "./types";
+
+const calculationVersion = z.enum(["1.0.0", CALCULATION_VERSION]);
 
 const evidenceState = z.enum(["known", "estimated", "unknown"]);
 const source = z.enum(["user", "rule"]);
@@ -15,7 +18,7 @@ export const scenarioSchema = z.object({
   title: z.string().trim().min(1).max(120),
   reviewStartMonth: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/),
   horizonMonths: z.literal(12),
-  calculationVersion: z.literal("1.0.0"),
+  calculationVersion,
   purchase: z.object({
     label: z.string().trim().min(1).max(80),
     priceCents: cents.positive(),
@@ -49,18 +52,22 @@ export const scenarioResultSchema = z.object({
       amountCents: cents.nullable(),
       amountState: evidenceState,
       dateState: evidenceState,
+      amountAssumption: z.string().max(300).optional(),
+      dateAssumption: z.string().max(300).optional(),
     })).max(200),
-    knownSubtotalCents: cents,
+    knownSubtotalCents: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
     state: calculationState,
     overlap: z.boolean(),
     unresolvedCouldAffectMonth: z.boolean(),
   })).length(12),
-  knownHorizonTotalCents: cents,
+  knownHorizonTotalCents: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
   unscheduled: z.array(z.object({
     id: z.string().min(1).max(160),
     label: z.string().min(1).max(120),
     amountCents: cents.nullable(),
     remainingCount: z.number().int().min(1).max(240).nullable(),
+    amountState: evidenceState.optional(),
+    amountAssumption: z.string().max(300).optional(),
     reason: z.string().min(1).max(500),
     impact: z.string().min(1).max(500),
   })).max(100),
@@ -68,5 +75,5 @@ export const scenarioResultSchema = z.object({
   warnings: z.array(z.string().min(1).max(500)).max(100),
   extendsBeyondHorizon: z.boolean(),
   horizonLabel: z.string().min(1).max(300),
-  calculationVersion: z.literal("1.0.0"),
+  calculationVersion,
 });
