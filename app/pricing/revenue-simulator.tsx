@@ -53,8 +53,8 @@ export default function RevenueSimulator() {
 
   return (
     <section className="form-card revenue">
-      <h2>Simulador de ingresos</h2>
-      <p>Los valores iniciales de volumen y conversión son supuestos. Cambiar el precio aquí solo cambia la proyección.</p>
+      <h2>Simulador de ingresos del proyecto</h2>
+      <p>Esta sección muestra cuánto podría ingresar a Debt Check MX. Los valores iniciales de volumen y conversión son supuestos. Cambiar el precio aquí solo cambia la proyección.</p>
       <div className="fields">
         {fields.map(({ key, label, max, step }) => (
           <label key={key}>

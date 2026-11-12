@@ -4,3 +4,10 @@
 
 .month li { display: grid; gap: 4px; overflow-wrap: anywhere; }
 .month li b { text-align: left; }
+
+.payment-preview { margin: 1rem 0; }
+.payment-preview-table { overflow-x: auto; }
+.payment-preview table { border-collapse: collapse; width: 100%; text-align: left; }
+.payment-preview caption { text-align: left; padding: .75rem 0; font-weight: 700; }
+.payment-preview th, .payment-preview td { padding: .65rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.payment-preview td small { display: block; color: var(--muted); }

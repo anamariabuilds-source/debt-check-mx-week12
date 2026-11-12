@@ -18,10 +18,10 @@ export default function Pricing() {
         </section>
         <section className="form-card">
           <p className="plan-label">Para compras recurrentes · En evaluación</p>
-          <h2>Reutilización guardada</h2>
+          <h2>Guarda y vuelve a abrir tu calendario</h2>
           <p className="plan-price">${reusePrice} MXN <small>por {offerMonths} meses</small></p>
-          <p>La compradora pagaría por reabrir su calendario y ajustar lo que cambió para la siguiente compra. Puede seguir haciendo el chequeo completo gratis o reutilizar su propia hoja.</p>
-          <p>Oferta en evaluación. Aún no se cobra.</p>
+          <p>La propuesta es que puedas volver a abrir tu calendario con los pagos que capturaste y actualizarlo para tu siguiente compra. Puedes seguir revisando compras gratis.</p>
+          <p>Oferta en evaluación. Aún no disponible para contratar.</p>
         </section>
       </div>
       <RevenueSimulator />
