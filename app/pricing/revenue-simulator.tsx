@@ -54,7 +54,7 @@ export default function RevenueSimulator() {
   return (
     <section className="form-card revenue">
       <h2>Simulador de ingresos</h2>
-      <p>Los valores iniciales de volumen y conversión son supuestos. El precio inicial es la oferta en evaluación.</p>
+      <p>Los valores iniciales de volumen y conversión son supuestos. Cambiar el precio aquí solo cambia la proyección.</p>
       <div className="fields">
         {fields.map(({ key, label, max, step }) => (
           <label key={key}>
@@ -71,15 +71,16 @@ export default function RevenueSimulator() {
         {projection ? (
           <>
             <div>Ingreso bruto en 12 meses <strong>{mxn.format(projection.annual)} MXN</strong></div>
-            <div>Equivalente mensual <strong>{mxn.format(projection.monthly)} MXN</strong></div>
+            <div>Promedio mensual de ingresos <strong>{mxn.format(projection.monthly)} MXN</strong></div>
           </>
         ) : <p>Ingresa un número entero de compradoras entre 0 y 10 millones, un porcentaje de 0 a 100 y un precio de 0 a 100,000 MXN.</p>}
       </div>
-      <p>Ingreso anual = compradoras elegibles × conversión × precio. El equivalente mensual divide ese monto entre 12. El cálculo usa un pago por compradora convertida y muestra ingresos antes de costos, sin proyectar renovaciones.</p>
+      <p>Ingreso anual = compradoras elegibles × conversión × precio. Cada compradora convertida representa un solo pago por 12 meses. El promedio mensual divide el ingreso anual entre 12. La proyección excluye renovaciones y costos.</p>
       <div className="actions">
-        <button type="button" className="button primary" disabled={!parsed.success} onClick={save}>Guardar escenario</button>
-        <button type="button" className="button secondary" onClick={restore}>Recuperar escenario</button>
+        <button type="button" className="button primary" disabled={!parsed.success} onClick={save}>Guardar cifras de ingresos</button>
+        <button type="button" className="button secondary" onClick={restore}>Recuperar cifras guardadas</button>
       </div>
+      <p>Se guardan el número de compradoras, la conversión y el precio en este navegador.</p>
       <p role="status">{message}</p>
     </section>
   );

@@ -48,3 +48,7 @@
 - La compilación de producción y lint pasaron. Las 45 pruebas existentes pasaron. En navegador local sin sesión, /pricing mostró $195 anuales y $16.25 equivalentes al mes con 100, 5% y $39. Guardar 200 compradoras, recargar y recuperar devolvió $390 anuales y $32.50 equivalentes al mes. El enlace abrió el memo en /about.
 - Pendientes: prueba de persona independiente, replay cronometrado, conversación real, ciclo de despliegue y verificación del dominio.
 - Próximo paso: publicar una primera versión en el proyecto de Vercel existente y probar el enlace de entrega sin sesión.
+
+### Week 14 · Segunda pasada
+
+La revisión con una persona sintética en esta conversación identificó dos lecturas plausibles: entender el promedio mensual como un cargo mensual y confundir guardar cifras de ingresos con guardar compromisos de compra. La interfaz ahora distingue el pago único de 12 meses y los datos específicos que guarda el simulador.
