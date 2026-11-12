@@ -40,3 +40,11 @@
 - Unknown values and dates remain JSON `null`; estimated evidence requires and preserves a written assumption. Schema and calculation versions are stored and checked when reopening.
 - When configuration is absent, the product remains usable for calculation and clearly labels authentication/persistence as pending. It does not simulate login or private storage.
 - No cloud project, migration application, OAuth configuration, live credential, deployment, or GitHub push was performed.
+
+## Week 14 · Precio y prueba
+
+- El chequeo completo permanece gratis. $39 MXN por 12 meses es una oferta experimental para la compradora recurrente.
+- El simulador guarda un conjunto de supuestos numéricos en el navegador. El guardado de calendarios con cuenta se verifica aparte.
+- La compilación de producción y lint pasaron. Las 45 pruebas existentes pasaron. En navegador local sin sesión, /pricing mostró $195 anuales y $16.25 equivalentes al mes con 100, 5% y $39. Guardar 200 compradoras, recargar y recuperar devolvió $390 anuales y $32.50 equivalentes al mes. El enlace abrió el memo en /about.
+- Pendientes: prueba de persona independiente, replay cronometrado, conversación real, ciclo de despliegue y verificación del dominio.
+- Próximo paso: publicar una primera versión en el proyecto de Vercel existente y probar el enlace de entrega sin sesión.
