@@ -1,0 +1,72 @@
+Week 15 synthetic persona walkthrough — Debt Check MX
+Simulation only. This exercise cannot establish actual demand, adoption, willingness to pay, or human comprehension. I inspected the live guide and product, including the three carousel slides, the “Sin fecha no significa sin pago” card, and the product’s calculation states. The pages loaded and I could enter the fictional scenario.
+Evidence and assumptions
+Documented in your brief: The need is framed around an adult in Mexico planning an appliance installment purchase and manually comparing existing obligations. The brief records one shopper’s report of about 20 minutes using Notes and mental calculation; that was not a timed observation and does not establish what caused the effort. No interview or research finding was created in this walkthrough.
+
+Added for this simulation: I assume the persona can find and check the amounts, dates, payment frequency, and remaining payment counts for the obligations they choose to enter. The purchase, phone, insurance, and review dates below are fictional and supplied for this task. I have not added age, gender, job, income, or other demographic details.
+Persona responses
+1. What do you think this tool helps you do, and who is it for?
+I think it helps me line up the monthly payments for a proposed appliance purchase with the existing payments I enter, so I can see which months overlap. It seems intended for someone planning an appliance purchase in installments who wants to compare schedules before committing. I still have to supply and verify the information.
+
+That interpretation matches the guide’s wording: compare the proposed appliance payments with selected existing payments. The guide also says the examples are fictional and not a review of my finances.
+2. What answer would you expect after using it?
+I’d expect a month-by-month view showing which entered payments fall together and a subtotal for each month. I’d also expect it to tell me when something is missing or undated, instead of treating that payment as zero.
+
+3. What would you click next, and why?
+After seeing the carousel, I’d choose “Crear comparación gratuita” to enter my own proposed purchase and the payments I want to compare. Before entering details, I’d read “Sin fecha no significa sin pago” so I understand what happens if I can’t place a payment on the calendar.
+
+The guide also offers an example and a checklist of information to have ready.
+4. What information would you need before starting?
+I’d need the proposed purchase price, number and amount of installments, and the confirmed first payment date. For each existing payment I want to compare, I’d need its amount, next payment date, frequency, and how many payments remain, including the next one. I’d want to check those against my own records. The guide says not to enter passwords, account numbers, or bank statements, and that the tool does not connect to my bank.
+
+5. What remains unclear or makes you hesitate?
+I’d want to know what counts as a confirmed first payment date if the purchase is still only a proposal. I’d also want to remember that a complete-looking calculation only covers what I entered; it doesn’t tell me whether I can afford the purchase or whether I left out other expenses. The product says that, but I’d pay attention to the prominent “Completo” status. I’d also notice that the calculation is not saved until there’s an authenticated session and the access policies are verified.
+
+Fictional task results
+6. Explain the overlaps and subtotals you obtain.
+With the purchase date confirmed as January 15, 2027, the product placed all 12 appliance payments from January through December. It placed the four phone payments from January through April and the insurance payments in March and September.
+Month	Payments shown	Subtotal
+January	Purchase + phone	MXN 1,400
+February	Purchase + phone	MXN 1,400
+March	Purchase + phone + insurance	MXN 3,800
+April	Purchase + phone	MXN 1,400
+May–August	Purchase	MXN 800 each month
+September	Purchase + insurance	MXN 3,200
+October–December	Purchase	MXN 800 each month
+
+
+The product marked the scenario “Completo” and showed MXN 16,800 as the confirmed subtotal across the 12-month view. March is the highest subtotal among the entered payments. The product’s overlap wording says to review the payments and clarifies that a cross does not automatically mean danger.
+7. Explain what the result includes and excludes.
+I’d read this as the schedule for the proposed purchase, phone, and insurance payments I entered, using the amounts, dates, frequencies, and counts I supplied. It does not include other expenses or obligations I didn’t enter, and it doesn’t establish affordability or make the purchase decision for me.
+
+The guide also says the comparison does not confirm dates with the bank. The result is a calculation from manual inputs, not a bank statement.
+8. Add a payment of MXN 300 with an unknown date. What changes, and what remains unresolved?
+After I entered the MXN 300 payment and marked its date unknown, the overall status changed from “Completo” to “Parcial.” The payment appeared under “Pagos sin fecha asignada” with its amount and unknown date. It was not placed into a month or added to the confirmed monthly subtotals; the confirmed 12-month subtotal remained MXN 16,800.
+I can see that the MXN 300 still exists as a pending obligation, but I still don’t know which month it belongs in or how it changes that month’s overlap.
+
+That matches the guide card’s message: its absence from the calendar does not make it zero.
+9. Remove the proposed purchase’s confirmed first payment date. What can the main calendar establish, and what do the provisional options mean?
+With the purchase date cleared, the main calendar showed only the confirmed, dated existing payments: MXN 600 in January, MXN 600 in February, MXN 3,000 in March, MXN 600 in April, and MXN 2,400 in September. The confirmed subtotal without the purchase was MXN 7,200. The calendar stayed “Parcial”; it could not establish the purchase’s actual overlaps. The undated MXN 300 also remained outside the monthly totals.
+
+The product then offered two provisional start-month options, February and March in the displayed state. Its scenario table adds the purchase installment to payments with known amounts and dates; other pending payments remain outside those figures. The product says these options are provisional and that the main calendar keeps the purchase date unknown.
+I’d treat those as “what if the first payment were in this month?” comparisons. They don’t confirm the date or replace the main calendar’s unresolved status.
+
+10. Does any wording or visual cue make this look like permission to buy?
+The wording I inspected does not say I have permission to buy. It says the comparison is not a recommendation, a cross does not automatically mean danger, and the result does not mean the purchase is affordable. Still, I could initially read “Completo” as a green light unless I notice the explanation that it only means the entered payments have enough information for the calculation.
+
+The guide’s prominent “Antes de comprometerte” framing reinforces that this is a pre-purchase comparison, not approval.
+11. What work does this require compared with the persona’s current workaround?
+I’d still have to find the relevant records, choose which obligations to compare, count remaining payments, check dates and frequencies, enter the details, and review whether the result matches what I know. The tool organizes those schedules into a calendar, but it doesn’t discover missing payments or verify my records. If I use Notes and mental calculation, I may avoid entering everything into another tool; if I already have a reusable sheet, I’d also have to decide whether this calendar is useful enough to switch. I can’t assume this takes less time.
+
+Your brief’s approximately 20-minute report is a single shopper’s reported experience, not a measured baseline or evidence that the tool saves time.
+Confusion log
+Interface observations — observed behavior, not failures
+Location	Observed interpretation	Consequence	Proposed correction	Retest task
+Guide carousel, slides 1–3	The first slide introduces the fictional appliance purchase; the next shows selected monthly subtotals; the last explains the information needed and limits. The carousel also has a text version with the example table.	The example can be understood from the text even if the carousel is not fully viewed. No failure observed.	No correction proposed from this check.	In a future human test, ask a participant to explain what the example includes and excludes without coaching.
+Guide card, “Sin fecha no significa sin pago”	The MXN 300 remains pending, is not placed into a month, and is excluded from the known subtotal.	The card explicitly counters treating an undated payment as zero. No failure observed in the interface check.	No correction proposed from this check.	In a future human test, ask what happens to a payment whose date they don’t know.
+Product status and its explanation	The product shows “Completo” when the entered schedule is calculable and explains that this does not mean all expenses were entered or the purchase is affordable.	The explanation is present; the interface check did not establish how people interpret the status.	No correction proposed as a confirmed defect. See the modeled reaction below.	Ask a participant what “Completo” means and whether it tells them they can buy.
+
+
+Modeled reaction — hypothesis, not observed participant confusion
+Location	Possible interpretation	Possible consequence	Proposed correction to consider	Retest task
+Product status label “Completo”	I might take the short status as “my finances are complete” or as approval, even though the nearby explanation says otherwise. This is a modeled hesitation; no human comprehension check occurred.	I could give the result more authority than it supports.	Consider changing the label to “Completo para los datos ingresados” and keeping the affordability caveat beside it. No change was made in this walkthrough.

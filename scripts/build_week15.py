@@ -111,8 +111,9 @@ claims=[
 {'claim':'Unknown date does not equal zero payment','basis':'Domain engine unknown-date tests and data model','limit':'Not independent user comprehension evidence'},
 {'claim':'Free comparison next action','basis':'Existing product positioning and public /product HTTP check','limit':'Human browser task and independent review outstanding'}]
 (EV/'CLAIMS.json').write_text(json.dumps(claims,ensure_ascii=False,indent=2))
-with (EV/'DISTRIBUTION_LOG.csv').open('w') as f:
- writer=csv.writer(f);writer.writerow(['participant_code','audience_fit','consent_date','shared_date','asset_ids','channel','expected_action','observed_action','reported_action','comprehension','confusion','next_change','observation_window_end'])
+if not (EV/'DISTRIBUTION_LOG.csv').exists():
+ with (EV/'DISTRIBUTION_LOG.csv').open('w') as f:
+  writer=csv.writer(f);writer.writerow(['participant_code','audience_fit','consent_date','shared_date','asset_ids','channel','expected_action','observed_action','reported_action','comprehension','confusion','next_change','observation_window_end'])
 
 # English academic packet; public-facing assets are in Spanish.
 S=getSampleStyleSheet()
@@ -143,7 +144,7 @@ P('<b>“Compara en qué meses coincidiría esta compra con los pagos que ingres
 H('Evidence behind the choice')
 P('The Week 12 Charter records one shopper reporting approximately 20 minutes using Notes and mental calculations. The source of that effort is unknown. Existing test fixtures establish particular calculation behaviors, not demand or human understanding. The Week 15 Blueprint confirms conditional support for investigating schedule alignment and requires explicit coverage, unknown dates and independent review before public claims.')
 H('Current release and repository')
-P(f'<link href="{URL}" color="#0E5946">Open the existing product</link> · <link href="https://github.com/anamariabuilds-source/debt-check-mx-week12/tree/week14" color="#0E5946">Repository branch recorded in Week 14 evidence</link>')
+P(f'<link href="https://debt-check-mx-week12.vercel.app/guia" color="#0E5946">Open the published guide</link> · <link href="{URL}" color="#0E5946">Open the product</link> · <link href="https://github.com/anamariabuilds-source/debt-check-mx-week12/tree/main" color="#0E5946">Current repository branch</link>')
 P('The product endpoint returned HTTP 200 on 21 November. A browser replay also matched the selected example totals; this is not independent human review. The repository URL and deployment history are inherited evidence, not newly verified deployment events.','SmallX')
 
 page('Brand rules and creative range')
@@ -196,19 +197,19 @@ H('Mechanical checks completed')
 P('On 21 November, the existing Vitest suite passed: 45 tests across 10 files. The suite covers finite counts, cross-year recurrence, unknown dates and amounts, estimated-input handling, validation and other existing behaviors. These are automated local checks, not independent live-product review or user comprehension evidence.')
 P('The product URL returned HTTP 200 without authentication via a header request. Earlier browsing-tool fetches failed, so the successful direct check is recorded separately. A browser replay then matched January 1,400, March 3,800, September 3,200 and a 16,800 MXN horizon total. The initial unknown-date state stayed outside the main calendar. These checks do not establish human comprehension or verify every repository/deployment link.')
 H('Security and scope')
-P('This sprint makes no app, authentication, database or persistence changes. Existing code includes schema validation and owner-scoped Supabase controls, but their production configuration is not re-certified here. Public assets contain labeled fictional data only. Distribution logs use participant codes; do not enter credentials, names, phone numbers or private statement images.')
+P('This sprint adds a public guide, content assets, navigation and bounded home copy. Calculation, authentication, database and persistence logic are unchanged. Existing code includes schema validation and owner-scoped Supabase controls, but their production configuration is not re-certified here. Public assets contain labeled fictional data only. Distribution logs use participant codes; do not enter credentials, names, phone numbers or private statement images.')
 H('Team challenge and response')
 P('Peers noted that “Debt Check” could imply a financial verdict. My response is to state selected-schedule scope, exclusions and missing-date behavior. The team supports testing the narrower promise with conditions; it does not validate demand. I own final claim approval. An independent release reviewer is still unassigned.')
 P('<b>Shadow:</b> Do not present selected schedules as complete obligations or imply that no overlap establishes affordability.')
 H('Pending persona review')
 P('A research-grounded synthetic persona must be run in a fresh chat with the actual screens, retaining the original exchange. Record confusion, distinguish a plausible interpretation from a reproduced failure, fix a reproduced failure if one exists, and retest. This simulation is not completed here and cannot replace real audience exposure.')
 H('Historical development evidence')
-P('Git history includes more than five existing commits, including d41241b, bc38ea3, 8908738, 17cf94d and 9c3fbc4. Week 14 records a production URL and preview deployment. Do not add artificial edits or claim new deploys. This sprint has not created a new commit or deployment.')
+P('Git history includes more than five existing commits, including d41241b, bc38ea3, 8908738, 17cf94d and 9c3fbc4. Week 14 records a production URL and preview deployment. Do not add artificial edits or claim new deploys. Commit 59883a4 was pushed to main. Vercel production deployment dpl_6VAuRm3jLQLkRW4pYxCQ436hMAms reached READY. The deployed guide and product CTA opened without sign-in. Independent human review remains unassigned.')
 
 page('Real audience test awaiting execution')
-P('<b>Status:</b> The founder reports that no Week 15 content has been shared. Exposure is not yet recorded; response, click and conversion rates are not applicable. This is not a completed zero-response test.')
+P('<b>Status:</b> The guide is published at /guia, but the founder reports that no Week 15 content has been shared with the intended audience. Exposure is not yet recorded; response, click and conversion rates are not applicable. This is not a completed zero-response test.')
 H('Channel and recruitment')
-P('Proposed channel: one-to-one WhatsApp messages after permission, to adults considering a specific appliance installment offer. Personal or university contacts provide a possible recruitment route, not a validated acquisition channel. Share A and B through this one channel with the existing product link after the review gate. No public social account is required.')
+P('Proposed channel: one-to-one WhatsApp messages after permission, to adults considering a specific appliance installment offer. Personal or university contacts provide a possible recruitment route, not a validated acquisition channel. Share A and B through this one channel with the published guide/product links after human review. Assistant checks are completed; independent human review remains an open condition. No public social account is required.')
 H('Expectation recorded before sharing')
 P('A viewer should explain that the tool compares selected payments, identify the next action, and recognize that missing dates remain unresolved. No numeric engagement target is assumed. Observe actual behavior rather than equating positive feedback with demand.')
 H('Suggested permission message')

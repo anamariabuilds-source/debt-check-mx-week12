@@ -89,3 +89,20 @@ With **clearly labeled synthetic** test data, check month recurrence, credit-car
 “Step 3 of my Method becomes the function that compares a proposed installment purchase with the user's existing and upcoming financial obligations, identifies overlapping payments, unclear charges, and missing timing information, and presents the financial trade-offs before the user decides whether to buy.”
 
 **Provenance:** Based on the approved Week 12 Charter, Verdict, Method and Team Blueprint. Persona 1 is based only on the documented October experience; Persona 2 is entirely hypothetical. No implementation or new interview is claimed.
+
+
+## Week 15 fresh-chat protocol — not executed
+
+Use a new original conversation and attach Charter, Week 15 Brain/Blueprint and public /guia and /product links. Ground the persona in the documented single shopper need and Mexican payment mechanics; mark added traits as assumptions. Do not claim actual customer evidence. The persona is an adult in Mexico planning an appliance offer, manually comparing selected obligations; do not invent income, bank access or research findings.
+
+Before calculator use: ask the persona to interpret purpose, user, expected answer, required data, next action and limits from the two content pieces without founder explanation. Then ask it to attempt a clearly fictional scenario: purchase 9,600 MXN, 12 payments of 800 from 2027-01-15; review from 2027-01; phone 600 monthly for 4 payments from 2027-01-15; insurance 2,400 every six months for 2 payments from 2027-03-15. Ask it to explain the result in its own words, not repeat a supplied reference answer. Add a 300 MXN payment with unknown date and ask how its interpretation changes. Remove the proposed purchase's first date and ask what can and cannot be concluded.
+
+Record actual inspected screens/actions separately from modeled reactions. If the chat cannot browse or operate the release, supply real screenshots; it must not invent navigation. Ask for observed issue, modeled user interpretation, severity, suggested response and retest. A plausible concern is not a reproduced bug. Retest only after an actual revision where justified. Preserve the entire original exchange, including passes and limitations. No Week 15 persona outcome has occurred yet.
+
+Real audience questions are separate: ask about a genuine pending purchase and current workaround before showing the guide; ask what each piece communicates and what action they choose; ask for task interpretation, missing data, confusion and whether the tool added anything beyond their usual approach. No leading affordability explanation before measuring comprehension; clarify after recording misunderstandings. Log exposure and actions honestly without private identifiers.
+
+### Week 15 initial walkthrough received — retest pending
+
+Source: founder-supplied original text preserved in output/week15/evidence/PERSONA_WALKTHROUGH_ORIGINAL.txt. The report describes live inspection; its persona reactions are explicitly simulated. Known example total: 16,800 MXN; unknown 300 stays outside known subtotals; removing purchase date leaves 7,200 MXN in entered known existing payments. No mechanical failure reported.
+
+Modeled hesitation: global 'Completo' could sound like approval or all finances accounted for. Preventive change: global label 'Completo para los datos ingresados' and matching adjacent explanation. This is not a reproduced user failure, and comprehension improvement remains untested. Production build and lint passed. Retest must revisit the deployed product in the same original persona chat and report what actually appears. Ask what the new label means, whether omitted expenses are covered, and what changes after an unknown-date entry. Do not prescribe a favorable reaction or claim the concern resolved.

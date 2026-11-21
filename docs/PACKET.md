@@ -94,6 +94,10 @@ Retain a reusable Mexican household commitment calendar only if repeated use dem
 
 Existing suite: 45 tests passed across 10 files. Public /product returned HTTP 200. Browser opened without sign-in and replayed the selected known example: January 1,400; March 3,800; September 3,200; horizon 16,800 MXN. The initial unknown-purchase-date state stayed outside the main calendar and displayed provisional options. Coverage warning was visible. This is an assistant-run mechanical/browser check, not independent human review or user validation. Automated date entry required native accessibility controls; no product bug inferred. Three assets were rendered and visually inspected; footer spacing corrected before final export. See output/week15/evidence/VERIFICATION.json.
 
+## Published release
+
+Commit 59883a4 is on origin/main. Vercel deployment dpl_6VAuRm3jLQLkRW4pYxCQ436hMAms is READY. Public guide: https://debt-check-mx-week12.vercel.app/guia ; next action: /product. Build and lint passed. Browser checked local desktop/mobile guide and opened deployed guide and CTA without login. Founder authorized release after assistant checks; independent human review remains unassigned, not silently fulfilled. No audience or persona outcome is claimed.
+
 ## Submission and remaining evidence
 Final packet must include strategy, brand, six concepts, finished assets or links, process trace, mechanical results, real distribution observations, Blueprint conditions, and decision trail. PERSONA must preserve the fresh-chat synthetic review. BUILDCHAT must be the actual full original development exchange, not this packet or a reconstructed transcript. Demo: 3 minutes showing live workflow and assets, plus 30 seconds explaining what changed the founder's mind. Live and repo links must be checked before submission. Audience sharing, independent review, persona conversation, and founder video remain outstanding.
 
@@ -167,3 +171,10 @@ El lanzamiento incluye contenido público, simulador, escenarios numéricos loca
 ## Regla 10:1
 
 $39 × 10 = $390 MXN de beneficio incremental en 12 meses. Beneficio = horas ahorradas × valor por hora + costos directos evitados + pérdidas evitadas respaldadas por evidencia, sin duplicar rubros. Como sensibilidad, a $120 MXN por hora supuestos, se requieren 195 minutos ahorrados al año si todo el beneficio viene del tiempo. Los 20 minutos reportados describen el proceso actual para una compra y el ahorro sigue sin medirse. Si la reutilización no mejora el proceso habitual o la compradora rechaza la oferta porque el chequeo gratuito basta, registrar el motivo y replantear el cobro.
+
+
+## Week 15 persona report received
+
+Founder supplied a synthetic walkthrough reporting live-page inspection and the fictional example outputs, matching 1,400 / 3,800 / 3,200 / 16,800 MXN. With an undated 300 payment, it reports partial status and unchanged known subtotal; without the proposed purchase date, it reports 7,200 MXN of known existing obligations and provisional options. These are claims in the supplied synthetic session, not new human evidence. Preserve its exact text at output/week15/evidence/PERSONA_WALKTHROUGH_ORIGINAL.txt; obtain the full original chat link/export separately.
+
+No calculation failure was reported. A modeled hesitation concerns the global status 'Completo' implying complete finances or approval. Preventive response: show 'Completo para los datos ingresados' for the global complete state and retain the affordability exclusion beside it. Monthly state labels and engine states stay unchanged. Run build/lint and verify the published label; synthetic persona comprehension retest and real human comprehension remain pending. This is a precautionary clarification, not a claim of fixing a reproduced bug.

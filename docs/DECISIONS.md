@@ -81,3 +81,16 @@ La revisión con una persona sintética en esta conversación identificó dos le
 - Production build and lint passed. Browser checked the guide at desktop width and 390px mobile width; anchor and comparison navigation worked. Mobile carousel is horizontally scrollable.
 - Existing Vercel project inspected and linked; production branch is main. CLI-created .env.local and .vercel are excluded from Git. No secret values were printed or staged.
 - Independent human review and real audience/synthetic persona outcomes are still outstanding.
+
+### Week 15 published release
+
+- Commit 59883a4 pushed to origin/main. Existing Vercel project production deploy dpl_6VAuRm3jLQLkRW4pYxCQ436hMAms reached READY; primary URL remains https://debt-check-mx-week12.vercel.app.
+- Guide is live at /guia with three public content assets and links to /product. Browser verified the deployed guide and followed the CTA to the calculator without sign-in. Local desktop/mobile inspection and production build/lint passed.
+- Founder authorized publication after assistant-run checks. Independent human review is still unassigned and is not represented as completed. This is an open Blueprint condition, not evidence of approval by another reviewer.
+- Next: original fresh-chat synthetic persona walkthrough, real audience distribution and observed response, then packet/persona/buildchat export and founder demo. Do not reconstruct those outcomes.
+
+### Week 15 synthetic walkthrough and preventive clarification
+
+- Preserved founder-supplied walkthrough verbatim. It reports successful calculations, partial unknown-date handling and a modeled risk around 'Completo'; no mechanical defect reported.
+- Clarify global complete label to 'Completo para los datos ingresados', with the adjacent exclusion retained. No calculation, persistence or monthly-state change.
+- User understanding after revision must be retested; do not claim confusion was observed in a real participant or resolved. Full original chat export/link remains required.
