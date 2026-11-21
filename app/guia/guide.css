@@ -1,0 +1,21 @@
+.guide-page{max-width:1250px;margin:auto;padding:64px clamp(20px,5vw,64px)}
+.guide-intro{max-width:950px;padding-bottom:48px}.guide-intro h1{font-size:clamp(2.7rem,6vw,5.4rem)}
+.guide-demo-label,.guide-limit{font-size:1rem;line-height:1.6;color:var(--muted)}
+.guide-demo-label{max-width:760px;padding:14px 18px;border-left:4px solid var(--orange);background:#fff7ed}
+.guide-section{padding:42px 0;border-top:1px solid var(--line);scroll-margin-top:110px}
+.guide-section h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(1.9rem,3vw,2.7rem);line-height:1.15;margin:.3em 0 .6em}
+.guide-section h3{font-size:1.1rem}.guide-section p,.guide-section li{font-size:1rem;line-height:1.65}
+.guide-carousel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:26px 0}
+.guide-carousel figure{margin:0;min-width:0}.guide-carousel img{width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
+.guide-carousel figcaption{font-size:.875rem;color:var(--muted);margin-top:8px}
+.guide-text-example{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin:24px 0}
+.guide-text-example table{width:100%;border-collapse:collapse;text-align:left;font-size:1rem}
+.guide-text-example caption{text-align:left;padding:12px 0;font-weight:bold;line-height:1.5}
+.guide-text-example th,.guide-text-example td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.guide-download{font-weight:700;text-underline-offset:4px;color:var(--green);line-height:1.6}
+.guide-unknown{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+.guide-unknown img{width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
+.guide-readiness{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:24px 0}
+.guide-readiness article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.guide-readiness ul{padding-left:20px}.guide-readiness li{margin-bottom:12px}
+@media(max-width:700px){.guide-page{padding-top:40px}.guide-carousel{grid-template-columns:repeat(3,85%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}.guide-carousel figure{scroll-snap-align:start}.guide-unknown,.guide-readiness{grid-template-columns:1fr}.guide-text-example{padding:16px}.guide-text-example th,.guide-text-example td{padding:10px 5px;font-size:.9rem}}

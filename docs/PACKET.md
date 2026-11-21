@@ -1,3 +1,106 @@
+# Week 15 distribution sprint
+
+Ana María Matas | Debt Check MX | 21 November 2026
+
+## Problem and exact first user
+An adult in Mexico planning a specific appliance installment offer, with existing installments ending in different months and an unresolved schedule-alignment question. User and potential payer are the individual; willingness to pay is unestablished. The initial purchase check remains free. Reach the shopper during planning with time to consult records, not necessarily at checkout. This moment is operational reasoning, not an observed preference.
+
+## Evidence and success definition
+The Charter documents one shopper reporting about 20 minutes in Notes and mental calculation. This is neither a timed baseline nor evidence that schedule alignment caused the effort. Week 15 Brain and shared Blueprint narrow the promise: compare the months of a proposed purchase with payments the user enters. Do not promise affordability, completeness, saved money, or faster decisions.
+Sprint success requires six concepts across three series, three finished assets across at least two communication formats, one traceable input-to-output example, mechanical verification, a fresh-chat synthetic persona review, and distribution of two assets to intended users. Publication requires human claim approval and an independent release check; the independent reviewer is unassigned. Human distribution has not started, per founder report on 21 November. This is not zero response: no exposure has occurred yet.
+
+## Scope cut and architecture
+Reuse the existing Next.js product, deterministic TypeScript calendar engine, integer MXN cents, validation, and authenticated owner-scoped persistence. Retain existing Supabase controls; no new collection of personal information. This sprint initially changes documentation and creates distribution assets, not calculation or authentication logic. Reuse the public product route as the proposed next action after accessibility verification. No new marketing platform, paid agents, public social account, or bank integration.
+
+## Publication scope authorized on 21 November
+
+Founder requested publication before the fresh-chat persona test. Add /guia with the three labeled fictional assets, accessible text equivalents, input-readiness guidance and the existing /product next action. Update home and navigation to state the selected-payment comparison. No new capture database, tracking, authentication changes, private-data upload or calculation changes. Run build/lint and check deployed /guia, asset routes, home and product; retain original development conversation. Deploy to the existing Vercel project, not a replacement host.
+
+## Brand and Mexico fit
+Voice: (1) describe a concrete comparison using plain Mexican Spanish; (2) say exactly which inputs and unknowns qualify the result; (3) leave the purchase decision to the user, without fear, urgency, or approval badges.
+Weak: 'Compra tranquilo: descubre si te alcanza.' Revised: 'Compara en qué meses coincidiría esta compra con los pagos que ingreses.'
+Reuse cream #F6F3EA, ink #14211C, green #0E5946, mint #CCEBD9, orange #D96B38. Orange marks an unresolved question, not danger; green is a brand color, not financial approval. Titles use Georgia; body uses Arial or a metrically compatible fallback. Visual hierarchy: series label, one question, one evidence panel, coverage statement, one next action. Mobile-readable short text; pesos clearly labeled MXN; installment counts and first payment dates explicit. These are design choices, not tested audience preferences.
+
+## Creative range
+| Series | Concept | Status and format |
+| --- | --- | --- |
+| Antes de comprometerte | La mensualidad no cuenta toda la historia | Produce 3-panel carousel, asset A |
+| Antes de comprometerte | Antes de comparar, reúne estos datos | Headline/sketch; connect to required input list |
+| Lo que todavía no sabes | Sin fecha no significa sin pago | Produce static explanation card, asset B |
+| Lo que todavía no sabes | Confirmado, estimado y desconocido no son lo mismo | Headline/sketch; show distinct states, no certainty claim |
+| Del dato al calendario | De tres pagos a una comparación | Produce printable worked-example guide, asset C |
+| Del dato al calendario | ¿Tus Notas ya responden la pregunta? | Headline/sketch; compare the whole task, accept Notes when sufficient |
+
+Assets are editorial materials using labeled fictional data, not product screenshots or audience findings. Planned formats are a swipeable carousel, a static card, and a printable guide. The remaining concepts are purposeful sketches, not finished posts.
+
+## One real input through the content method
+Input: the existing fictional fixture in lib/domain/engine.test.ts, 'matches the approved fictional Packet fixture', scale 1. A MXN 9,600 purchase, 12 payments of MXN 800 starting 15 January 2027; phone MXN 600 for four months from January; insurance MXN 2,400 in March and September. The fixture also includes an estimated one-time MXN 300 and an undated unknown obligation.
+The content example explicitly selects the three known schedules and labels that reduced scope. Known selected totals: January 1,400; March 3,800; September 3,200; 12-month sum 16,800. The estimated 300 is not part of a known subtotal. Omitting it from the teaching example does not convert the full fixture into a complete financial picture. Asset B independently demonstrates a known amount with no date and does not silently place it.
+Method: read fixture and scope -> draft one schedule question -> build visual hierarchy -> reconcile labels and arithmetic against fixture/test output -> review plain Spanish and coverage -> revise -> founder and independent review -> share two pieces only after approval. This is a real editorial transformation of a fictional test input, not real-user financial evidence.
+
+## Auditable creative process
+| Role | Input | Output | Quality check |
+| --- | --- | --- | --- |
+| Research | Charter, Brain, Blueprint, fixture, official documentation | Fact/assumption list and chosen question | Source per claim; no invented user behavior |
+| Writing | Question and fact list | Spanish headline, explanation, next action | Bounded promise; required work visible |
+| Visual production | Approved copy and existing palette | Carousel, card, guide | Mobile hierarchy, readable amounts, color plus labels |
+| Evidence/claim checking | Draft plus engine fixture and test result | Claim register and arithmetic reconciliation | No unsupported speed, safety, savings, or validation claim |
+| Style review | Checked assets | Consistent Spanish and visual structure | Three voice rules; no fear or false approval |
+| Revision | Review findings | Versioned corrected files and change record | Recheck any changed claim or amount |
+| Human approval | Assets plus verification evidence | Release/share approval | Ana approves claim; independent release reviewer still unassigned |
+Roles describe stages actually documented here; they are not claims of multiple human reviewers or independent AI agents.
+
+## Distribution protocol and honest results
+Proposed channel: individual WhatsApp outreach to consenting adults considering a specific appliance installment purchase. Personal/university contacts are recruitment access, not a validated acquisition channel. Do not send messages automatically or collect financial details in group chats. First ask permission, then share assets A and B with the same verified product link. Do not claim measured clicks without instrumentation or direct observation. Capture only participant codes, actual exposure, voluntary replies, observed actions, confusion, and changes; no names, phone numbers, balances, or screenshots of private statements.
+Expectation, recorded before outreach: participants can explain that this is selected-payment comparison, identify the next action, and distinguish unknown dates from zero payments. No predicted click-through or conversion rate.
+Current results: not run; zero exposures recorded, response and click rates not applicable. Zero response becomes a valid outcome only after documented sharing and a defined observation window. Suggested window: 24 hours after actual sharing; record real timestamps and late replies separately.
+Keep/revise decisions must follow actual observations. No adoption, savings, payment, or comprehension result exists yet.
+
+## Test plan and release evidence
+Run existing mechanical suite; replay the selected known schedule and unknown-date behavior. Inspect assets for arithmetic, visible fictional-data labels, and working next-action links. Verify home/product without authentication and ensure no private data appears. If a check fails, reproduce, fix, and retest; do not invent a bug. Obtain independent release review before claiming it completed.
+A fresh-chat research-grounded synthetic persona session is required separately; preserve the actual original conversation and label it simulation. It does not replace two real audience exposures. No such Week 15 fresh-chat session is completed here yet.
+Preserve existing history (at least five commits already exist). Historical links list production and preview deployments, but Week 15 access must be checked. Do not manufacture commits or deploys for a quota.
+
+## Mockup and flow
+Reuse docs/MOCKUP_WEEK14.png and assets/DEBT_CHECK_MX_WEEK13_MOCKUP.png as image-generated historical concepts, not new screenshots; provenance in docs/IMAGE_PROVENANCE.md. This sprint's editorial layouts are constructed graphics, not image-generated product mockups.
+
+```mermaid
+flowchart LR
+  subgraph Founder[Founder and reviewer]
+    A[Choose bounded question] --> B[Check fixture and claims]
+    B --> C[Produce and review three assets]
+    C --> D{Human approval and release check}
+  end
+  subgraph Shopper[Opt-in shopper]
+    D --> E[Receives two assets]
+    E --> F[Explains expected answer and limits]
+    F --> G[Opens product if useful]
+    G --> H[Enters selected payments or identifies missing data]
+  end
+  H --> I[Record coded observations and revise]
+```
+
+## Benchmark and local adaptation
+Reuse Week 15 Brain research: Notes is the documented workaround; Apple Numbers can align schedules with a prepared sheet; Mobills documents finite installment entries. These mechanisms are not comparative usability findings. For Mexico, preserve MSI counts, supported first dates, cross-year recurrence, MXN, and unknowns. Official statement guidance can identify possible information sources but does not prove ease of entry or customer demand.
+References: Banco de México https://comparador.banxico.org.mx/ComparadorCrediticio/terminos-tarjeta-de-credito.jsp ; CONDUSEF statement guide https://sidof.segob.gob.mx/notas/docFuente/5676037 ; competitor references retained in Week 15 Brain. These are inherited references, not newly verified source checks in this sprint.
+
+## Blueprint and shadow conditions
+The team confirmed conditional support for investigating schedule alignment, not validated demand. Name mismatch: 'Debt Check' may sound like a financial verdict. Respond with explicit selected-payment scope, exclusions, and unknown-date behavior. Shadow: do not present selected schedules as complete obligations or imply that no overlap establishes affordability. Ana owns claim approval; independent reviewer is unassigned. Whole-task effort and comprehension remain conditions.
+
+## Three-year direction
+Retain a reusable Mexican household commitment calendar only if repeated use demonstrates additional value. Preserve confirmation states and traceable corrections. Pricing remains conditional on willingness to pay and service economics, not this campaign's reach. Do not expand into underwriting or financial verdicts.
+
+## Verification completed on 21 November 2026
+
+Existing suite: 45 tests passed across 10 files. Public /product returned HTTP 200. Browser opened without sign-in and replayed the selected known example: January 1,400; March 3,800; September 3,200; horizon 16,800 MXN. The initial unknown-purchase-date state stayed outside the main calendar and displayed provisional options. Coverage warning was visible. This is an assistant-run mechanical/browser check, not independent human review or user validation. Automated date entry required native accessibility controls; no product bug inferred. Three assets were rendered and visually inspected; footer spacing corrected before final export. See output/week15/evidence/VERIFICATION.json.
+
+## Submission and remaining evidence
+Final packet must include strategy, brand, six concepts, finished assets or links, process trace, mechanical results, real distribution observations, Blueprint conditions, and decision trail. PERSONA must preserve the fresh-chat synthetic review. BUILDCHAT must be the actual full original development exchange, not this packet or a reconstructed transcript. Demo: 3 minutes showing live workflow and assets, plus 30 seconds explaining what changed the founder's mind. Live and repo links must be checked before submission. Audience sharing, independent review, persona conversation, and founder video remain outstanding.
+
+---
+
+# Previous sprint material retained
+
 # Debt Check MX · Week 14
 
 ## Problema y usuario

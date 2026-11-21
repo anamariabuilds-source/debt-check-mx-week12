@@ -8,3 +8,4 @@ coverage/
 !.env.example
 evidence/private/
 evidence/native-transcripts/
+.vercel/

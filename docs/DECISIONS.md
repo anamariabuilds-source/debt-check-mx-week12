@@ -52,3 +52,32 @@
 ### Week 14 · Segunda pasada
 
 La revisión con una persona sintética en esta conversación identificó dos lecturas plausibles: entender el promedio mensual como un cargo mensual y confundir guardar cifras de ingresos con guardar compromisos de compra. La interfaz ahora distingue el pago único de 12 meses y los datos específicos que guarda el simulador.
+
+
+## 2026-11-21 — Week 15 distribution preparation
+
+- Founder authorized work here on existing files; founder reports no Week 15 audience sharing yet. No response rate exists.
+- Carry forward confirmed Blueprint: selected schedules, no affordability verdict, visible unknowns, independent release review before public claim.
+- Reuse brand and existing app. Prepare three editorial formats using labeled fictional inputs, six concepts across three series. No calculation/authentication changes planned initially.
+- Preserve Week 14 Packet in docs/PACKET_WEEK14_ARCHIVE.md; update current Packet before producing assets.
+- Owner: Ana María for human approval. Independent reviewer unassigned. Distribution, fresh-chat persona, video, and current-link verification remain pending.
+
+### Week 15 prepared assets and checks
+
+- Created carousel A, static card B, printable guide C and eight-page preparation packet. Corrected footer/URL spacing after visual QA. Public copy is Spanish; academic packet is English.
+- Reused known schedules from existing fictional fixture; labels explicitly exclude complete-finance or affordability interpretation.
+- 45 tests across 10 files passed. Public product returned HTTP 200 and browser replay matched 1,400 / 3,800 / 3,200 and 16,800 MXN horizon total. Unknown-date warnings observed. Native accessibility entry succeeded after locator limitations; no product defect claimed.
+- No new product code, commit, deploy, customer exposure, independent human review or fresh-chat persona session occurred. Next: founder review, independent reviewer assignment, fresh persona chat and actual opt-in sharing.
+
+### Week 15 — founder authorized publication
+
+- Publish the prepared content on /guia in the existing Vercel project; expose required inputs and limits before the calculator. Align home and navigation with selected-schedule positioning.
+- Preserve existing calculations, private-data protections and pricing experiment. No new analytics or audience claims.
+- Fresh-chat synthetic review, real audience distribution, video and original buildchat still required after this deploy.
+
+### Week 15 publication checks before deployment
+
+- Added public /guia with assets A/B/C, text alternatives, selected-payment subtotal table, unknown-date explanation, required inputs and working /product links. Updated home and navigation.
+- Production build and lint passed. Browser checked the guide at desktop width and 390px mobile width; anchor and comparison navigation worked. Mobile carousel is horizontally scrollable.
+- Existing Vercel project inspected and linked; production branch is main. CLI-created .env.local and .vercel are excluded from Git. No secret values were printed or staged.
+- Independent human review and real audience/synthetic persona outcomes are still outstanding.
