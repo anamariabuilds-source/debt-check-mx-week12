@@ -94,3 +94,12 @@ La revisión con una persona sintética en esta conversación identificó dos le
 - Preserved founder-supplied walkthrough verbatim. It reports successful calculations, partial unknown-date handling and a modeled risk around 'Completo'; no mechanical defect reported.
 - Clarify global complete label to 'Completo para los datos ingresados', with the adjacent exclusion retained. No calculation, persistence or monthly-state change.
 - User understanding after revision must be retested; do not claim confusion was observed in a real participant or resolved. Full original chat export/link remains required.
+
+- Published commit 91369ea. Browser verified the new global label in a complete fictional scenario (12 x 1,000 = 12,000 MXN) and the matching explanation in the initial unknown-date state. This is live presentation verification, not a synthetic-persona retest or human comprehension result.
+
+## 2026-11-22 — real WhatsApp test response
+
+- Founder confirms one real participant, link sent via WhatsApp, both A/B reviewed. Sharing date pending. Laptop is an adjacent case; do not generalize to appliance shoppers. Raw records remain in ignored evidence/private/week15, excluded from Git and deployment.
+- Reported friction drives UI revisions: empty financial fields on start, explicit example loading, unknown-date guidance, state above subtotal and lowercase month headings. No range/safety calculation added.
+- Production build, lint and 45 existing tests passed. Local browser verified empty start, optional fictional example and partial/horizon exclusions above subtotal. Mechanical replay matched the supplied fictional scenario. No post-revision human comprehension result claimed.
+- Publication review initially rejected upload of the participant record. Removed it from the unpushed commit and added .vercelignore to exclude all evidence, generated packets, documents and local environments from hosting uploads. Only application source and explicitly fictional public assets are published.

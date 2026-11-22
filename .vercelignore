@@ -1,0 +1,13 @@
+output/
+evidence/
+docs/
+scripts/
+assets/
+.git/
+node_modules/
+.next/
+.env
+.env.*
+*.log
+*.tsbuildinfo
+PACKET_AnaMariaMatas.pdf
